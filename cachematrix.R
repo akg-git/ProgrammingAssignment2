@@ -54,8 +54,12 @@ cacheSolve <- function(x, ...) {
   }
   
   data<-x$get()
-  x.inv <- solve(data,...)
-  x$setinverse(x.inv)
-  x.inv
+  if (det(data)!=0){
+    x.inv <- solve(data,...)
+    x$setinverse(x.inv)
+    x.inv
+  }
+  else
+    message("singular matrix - Inverse not possible")
   
 }
